@@ -14,3 +14,17 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('/home', 'Home\PhotosController@index');
+Route::get('/api/demo', 'Api\SmController@demo');
+
+Route::group(['prefix' => 'api','namespace' => 'Api','middleware' => 'Api'],function(){
+	Route::group(['prefix' => 'sm'],function(){
+        Route::post('sm4_decrypt','SmController@sm4_decrypt');
+        Route::post('sm4_encrypt','SmController@sm4_encrypt');
+	});
+});
+
+
+// Route::get('/api/sm/sm4_decrypt', 'Api\SmController@sm4_decrypt');
